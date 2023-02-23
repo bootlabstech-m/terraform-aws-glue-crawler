@@ -15,13 +15,10 @@ variable "s3_target" {
   type        = list(string)
 }
 variable "catalog_database_name" {
-  description = "catalog_database_names"
-  type        =  list(string)
+  description = "catalog_database_name"
+  type        =  string
 }
-variable "no_of_catalog_databases" {
-  description = "no of catalog dbs to be created."
-  type        =  number
-}
+
 variable "no_of_glue_crawlers" {
   description = "no of glue crawlers to be created."
   type        =  number

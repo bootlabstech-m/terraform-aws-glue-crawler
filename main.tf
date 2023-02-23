@@ -1,11 +1,10 @@
 resource "aws_glue_catalog_database" "aws_glue_catalog_database" {
-count               = var.no_of_catalog_databases
-name                = var.catalog_database_name[count.index]
+name                = var.catalog_database_name
 }
 
 resource "aws_glue_crawler" "crawler" {
   count         = var.no_of_glue_crawlers
-  database_name = var.catalog_database_name[count.index]
+  database_name = aws_glue_catalog_database.aws_glue_catalog_database.name
   name          = var.crawler_name[count.index]
   role          = aws_iam_role.crawler_role.arn
   s3_target {
