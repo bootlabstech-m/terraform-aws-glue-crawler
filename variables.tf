@@ -12,7 +12,7 @@ variable "crawler_name" {
 }
 variable "s3_target" {
   description = "ARN of the bucket for the crawler."
-  type        = string
+  type        = list(string)
 }
 variable "catalog_database_name" {
   description = "catalog_database_names"

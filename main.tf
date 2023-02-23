@@ -9,7 +9,7 @@ resource "aws_glue_crawler" "crawler" {
   name          = var.crawler_name[count.index]
   role          = aws_iam_role.crawler_role.arn
   s3_target {
-    path = var.s3_target
+    path = var.s3_target[count.index]
   }
 }
 resource "aws_iam_role" "crawler_role" {
