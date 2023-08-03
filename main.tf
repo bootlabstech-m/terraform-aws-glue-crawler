@@ -1,5 +1,8 @@
 resource "aws_glue_catalog_database" "aws_glue_catalog_database" {
 name                = var.catalog_database_name
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "aws_glue_crawler" "crawler" {
@@ -9,6 +12,9 @@ resource "aws_glue_crawler" "crawler" {
   role          = aws_iam_role.crawler_role.arn
   s3_target {
     path = var.s3_target[count.index]
+  }
+    lifecycle {
+    ignore_changes = [tags]
   }
 }
 resource "aws_iam_role" "crawler_role" {
@@ -39,6 +45,9 @@ resource "aws_iam_role" "crawler_role" {
     ]
   }
   )
+    lifecycle {
+    ignore_changes = [tags]
+  }
 }
 resource "aws_iam_role_policy_attachment" "crawler_policy_01" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
